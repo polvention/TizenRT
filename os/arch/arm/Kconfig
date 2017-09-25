@@ -25,12 +25,21 @@ config ARCH_CHIP_S5J
 	select ARMV7R_MEMINIT
 	---help---
 		Samsung IoT SoC architectures (ARM Cortex R)
+
+config ARCH_CHIP_SAM34
+	bool "Atmel SAM3/SAM4"
+	select ARCH_HAVE_MPU
+	select ARCH_HAVE_RAMFUNCS
+	---help---
+		Atmel SAM3 (ARM Cortex-M3) and SAM4 (ARM Cortex-M4) architectures
+
 endchoice
 
 config ARCH_CHIP
 	string
 	default "s5j"       if ARCH_CHIP_S5J
 	default "tiva"      if ARCH_CHIP_LM
+	default "sam34"	    if ARCH_CHIP_SAM34
 
 comment "ARM Options"
 
@@ -167,6 +176,9 @@ source arch/arm/src/tiva/Kconfig
 endif
 if ARCH_CHIP_S5J
 source arch/arm/src/s5j/Kconfig
+if ARCH_CHIP_SAM34
+source arch/arm/src/sam34/Kconfig
+endif
 endif
 
 endif
