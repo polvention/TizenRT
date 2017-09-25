@@ -27,8 +27,8 @@
 #include <fcntl.h>
 #include <sys/ioctl.h>
 #include <tinyara/pwm.h>
-#include <iotbus/iotbus_error.h>
-#include <iotbus/iotbus_pwm.h>
+#include <iotbus_error.h>
+#include <iotbus_pwm.h>
 
 // debugging
 #include <stdio.h>
