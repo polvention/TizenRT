@@ -43,6 +43,14 @@ config ARCH_BOARD_SIDK_S5JT200
 	select ARCH_HAVE_IRQBUTTONS
 	---help---
 		Samsung S5JT200 IoT wifi MCU
+
+config ARCH_BOARD_EFM32_STK3600
+	bool "Silicon Labs EFM32 STK3600 board"
+	depends on ARCH_CHIP_S5JT200
+	select ARCH_HAVE_BUTTONS
+	select ARCH_HAVE_IRQBUTTONS
+	---help---
+		Silicon Labs board
 endchoice
 
 config ARCH_BOARD
@@ -51,6 +59,7 @@ config ARCH_BOARD
 	default "artik053"           if ARCH_BOARD_ARTIK053
 	default "lm3s6965-ek"        if ARCH_BOARD_LM3S6965EK
 	default "sidk_s5jt200"       if ARCH_BOARD_SIDK_S5JT200
+	default "efm32_stk3600"      if ARCH_BOARD_EFM32_STK3600
 
 comment "Common Board Options"
 
@@ -186,4 +195,6 @@ endif
 if ARCH_BOARD_SIDK_S5JT200
 source arch/arm/src/sidk_s5jt200/Kconfig
 endif
-
+if ARCH_BOARD_EFM32_STK3600
+source arch/arm/src/efm32/Kconfig
+endif

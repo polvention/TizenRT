@@ -33,6 +33,14 @@ config ARCH_CHIP_SAM34
 	---help---
 		Atmel SAM3 (ARM Cortex-M3) and SAM4 (ARM Cortex-M4) architectures
 
+config ARCH_CHIP_EFM32
+	bool "Energy Micro"
+	select ARCH_HAVE_CMNVECTOR
+	select ARMV7M_CMNVECTOR
+	select ARCH_CORTEXM3
+	---help---
+		Energy Micro EFM32 microcontrollers (ARM Cortex-M).
+
 endchoice
 
 config ARCH_CHIP
@@ -40,6 +48,8 @@ config ARCH_CHIP
 	default "s5j"       if ARCH_CHIP_S5J
 	default "tiva"      if ARCH_CHIP_LM
 	default "sam34"	    if ARCH_CHIP_SAM34
+	default "tiva"      if ARCH_CHIP_LM
+	default "efm32"     if ARCH_CHIP_EFM32
 
 comment "ARM Options"
 
@@ -178,6 +188,9 @@ if ARCH_CHIP_S5J
 source arch/arm/src/s5j/Kconfig
 if ARCH_CHIP_SAM34
 source arch/arm/src/sam34/Kconfig
+endif
+if ARCH_CHIP_EFM32
+source arch/arm/src/efm32/Kconfig
 endif
 endif
 
